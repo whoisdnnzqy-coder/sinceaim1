@@ -10,14 +10,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install Java 17 Manually
+    - name: Build with pure shell commands
       run: |
-        sudo apt update
-        sudo apt install -y openjdk-17-jdk
-        echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug
+        sudo apt update && sudo apt install -y openjdk-17-jdk
+        export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+        chmod +x gradlew
+        ./gradlew assembleDebug
