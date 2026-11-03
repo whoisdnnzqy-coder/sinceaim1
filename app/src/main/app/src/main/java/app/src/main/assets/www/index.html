@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>SINCE AIM V1.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- TELA DO PAINEL PRINCIPAL -->
+    <div id="main-menu" class="screen active">
+        <div class="header">
+            <h1>SINCE <span>AIM</span></h1>
+            <p>V1.0 - Professional Training System</p>
+        </div>
+        <div class="menu-grid">
+            <button class="menu-btn" onclick="openScreen('trainer-screen')">🎯 AIM TRAINER</button>
+            <button class="menu-btn" onclick="openScreen('headlock-screen')">⚡ HEADLOCK SIMULATOR</button>
+            <button class="menu-btn" onclick="openScreen('sensitivity-screen')">⚙️ SENSIBILIDADE</button>
+            <button class="menu-btn" onclick="openScreen('dpi-screen')">📱 CALCULADORA DPI</button>
+            <button class="menu-btn" onclick="openScreen('profiles-screen')">👤 PERFIS</button>
+            <button class="menu-btn" onclick="openScreen('config-screen')">🛠️ CONFIGURAÇÕES</button>
+        </div>
+    </div>
+
+    <!-- TELA DO TREINADOR & SIMULADOR AIMBOT -->
+    <div id="trainer-screen" class="screen">
+        <div class="top-bar">
+            <button class="back-btn" onclick="openScreen('main-menu')">⬅ VOLTAR</button>
+            <span id="score-board">Pontos: 0 | Acertos: 0%</span>
+        </div>
+        <canvas id="aimCanvas"></canvas>
+        <div class="hud-controls">
+            <button id="toggle-aimbot" onclick="toggleAimbot()">Aimbot: OFF</button>
+            <button onclick="resetTraining()">Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- TELA DO HEADLOCK SIMULATOR -->
+    <div id="headlock-screen" class="screen">
+        <div class="top-bar">
+            <button class="back-btn" onclick="openScreen('main-menu')">⬅ VOLTAR</button>
+            <h2>HEADLOCK SIMULATOR</h2>
+        </div>
+        <div class="content-box">
+            <p>Simulação de travamento de mira na região superior (Headshot Lock).</p>
+            <label>Velocidade de Rastreamento: <span id="speed-val">5</span></label>
+            <input type="range" id="lock-speed" min="1" max="10" value="5" oninput="updateSpeed(this.value)">
+            
+            <label>Precisão de Alvo (%): <span id="prec-val">95</span>%</label>
+            <input type="range" id="lock-prec" min="50" max="100" value="95" oninput="updatePrec(this.value)">
+            
+            <button class="menu-btn" onclick="openScreen('trainer-screen'); activateHeadlockMode();">INICIAR TESTE DE HEADLOCK</button>
+        </div>
+    </div>
+
+    <!-- TELA DE SENSIBILIDADE -->
+    <div id="sensitivity-screen" class="screen">
+        <div class="top-bar">
+            <button class="back-btn" onclick="openScreen('main-menu')">⬅ VOLTAR</button>
+            <h2>SENSIBILIDADE</h2>
+        </div>
+        <div class="content-box">
+            <label>Geral:</label>
+            <input type="range" min="0" max="200" value="95">
+            <label>Mira Red Dot:</label>
+            <input type="range" min="0" max="200" value="90">
+            <label>Mira 2X / 4X:</label>
+            <input type="range" min="0" max="200" value="85">
+        </div>
+    </div>
+
+    <!-- TELA CALCULADORA DPI -->
+    <div id="dpi-screen" class="screen">
+        <div class="top-bar">
+            <button class="back-btn" onclick="openScreen('main-menu')">⬅ VOLTAR</button>
+            <h2>CALCULADORA DPI</h2>
+        </div>
+        <div class="content-box">
+            <p>Galaxy A05s (Tela FHD+ / 90Hz)</p>
+            <label>DPI Recomendada para Headshots:</label>
+            <input type="number" id="dpi-input" value="580" readonly>
+            <button class="menu-btn" onclick="alert('DPI aplicada no perfil interno do simulador!')">APLICAR AO PERFIL</button>
+        </div>
+    </div>
+
+    <!-- TELA DE PERFIS -->
+    <div id="profiles-screen" class="screen">
+        <div class="top-bar">
+            <button class="back-btn" onclick="openScreen('main-menu')">⬅ VOLTAR</button>
+            <h2>PERFIS</h2>
+        </div>
+        <div class="content-box">
+            <p><b>Perfil Atual:</b> PRO PLAYER A05s</p>
+            <p><b>Total de Treinos:</b> <span id="stat-trainings">0</span></p>
+            <p><b>Média de Headshots:</b> <span id="stat-hs">0</span>%</p>
+        </div>
+    </div>
+
+    <!-- TELA DE CONFIGURAÇÕES -->
+    <div id="config-screen" class="screen">
+        <div class="top-bar">
+            <button class="back-btn" onclick="openScreen('main-menu')">⬅ VOLTAR</button>
+            <h2>CONFIGURAÇÕES</h2>
+        </div>
+        <div class="content-box">
+            <p>Modo Escuro Neon: Ativado</p>
+            <p>Versão do Motor: SINCE AIM Core v1.0</p>
+            <p style="color: #a855f7; font-size: 12px; margin-top: 20px;">Segurança: Ambiente 100% isolado em simulador próprio.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+  </html>
