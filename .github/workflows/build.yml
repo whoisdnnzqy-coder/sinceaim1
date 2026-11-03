@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     - name: Set up Java manually
       run: |
@@ -23,7 +23,7 @@ jobs:
       run: ./gradlew assembleDebug
 
     - name: Upload APK artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: since-aim-apk
         path: app/build/outputs/apk/debug/app-debug.apk
